@@ -1,5 +1,5 @@
 {
-  "name": "@philiprehberger/cron-kit",
+  "name": "@philiprehberger/ts-cron-kit",
   "version": "0.2.0",
   "description": "Cron job scheduler with overlap prevention, timezones, and job management",
   "type": "module",
@@ -43,11 +43,11 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/philiprehberger/cron-kit.git"
+    "url": "git+https://github.com/philiprehberger/ts-cron-kit.git"
   },
-  "homepage": "https://github.com/philiprehberger/cron-kit#readme",
+  "homepage": "https://github.com/philiprehberger/ts-cron-kit#readme",
   "bugs": {
-    "url": "https://github.com/philiprehberger/cron-kit/issues"
+    "url": "https://github.com/philiprehberger/ts-cron-kit/issues"
   },
   "author": "Philip Rehberger",
   "engines": {
