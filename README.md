@@ -1,11 +1,11 @@
-# @philiprehberger/ts-cron-kit
+# @philiprehberger/cron-kit
 
 Cron job scheduler with overlap prevention, timezones, and job management.
 
 ## Installation
 
 ```bash
-npm install @philiprehberger/ts-cron-kit
+npm install @philiprehberger/cron-kit
 ```
 
 ## Usage
@@ -13,7 +13,7 @@ npm install @philiprehberger/ts-cron-kit
 ### Basic
 
 ```ts
-import { createScheduler } from '@philiprehberger/ts-cron-kit';
+import { createScheduler } from '@philiprehberger/cron-kit';
 
 const scheduler = createScheduler();
 
@@ -62,7 +62,7 @@ Supports: `*`, values (`5`), ranges (`1-5`), steps (`*/5`), lists (`1,3,5`).
 ### Preview Next Runs
 
 ```ts
-import { nextRuns } from '@philiprehberger/ts-cron-kit';
+import { nextRuns } from '@philiprehberger/cron-kit';
 
 nextRuns('0 9 * * 1', 3);
 // [Date, Date, Date] — next 3 Mondays at 9am
