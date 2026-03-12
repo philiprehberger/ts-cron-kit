@@ -98,6 +98,68 @@ scheduler.stop();               // stop scheduling (active jobs keep running)
 await scheduler.shutdown();     // stop + wait for active jobs to finish
 ```
 
+## API Reference
+
+### `createScheduler(): Scheduler`
+
+Creates a new scheduler instance.
+
+| Method | Signature | Description |
+|--------|-----------|-------------|
+| `addJob` | `(config: JobConfig) => void` | Register a job. Throws if name already exists. |
+| `removeJob` | `(name: string) => void` | Remove a job by name. Throws if not found. |
+| `getJob` | `(name: string) => JobInfo` | Get info for a single job. Throws if not found. |
+| `getJobs` | `() => JobInfo[]` | Get info for all registered jobs. |
+| `start` | `() => void` | Start the scheduler tick loop. |
+| `stop` | `() => void` | Stop scheduling (active jobs keep running). |
+| `shutdown` | `() => Promise<void>` | Stop and wait for all active jobs to finish. |
+
+### `JobConfig`
+
+| Property | Type | Required | Description |
+|----------|------|----------|-------------|
+| `name` | `string` | Yes | Unique job identifier. |
+| `schedule` | `string` | Yes | Cron expression (5 fields). |
+| `handler` | `() => Promise<void> \| void` | Yes | Function to execute. |
+| `timezone` | `string` | No | IANA timezone (e.g. `"America/Denver"`). |
+| `allowOverlap` | `boolean` | No | Skip execution if previous run is still active. Default: `true`. |
+| `onStart` | `() => void` | No | Called when job execution begins. |
+| `onComplete` | `(duration: number) => void` | No | Called on success with duration in ms. |
+| `onError` | `(error: Error) => void` | No | Called when handler throws. |
+| `onOverlap` | `() => void` | No | Called when execution is skipped due to overlap. |
+
+### `JobInfo`
+
+| Property | Type | Description |
+|----------|------|-------------|
+| `name` | `string` | Job name. |
+| `schedule` | `string` | Cron expression. |
+| `timezone` | `string \| undefined` | Configured timezone. |
+| `running` | `boolean` | Whether the job is currently executing. |
+| `lastRunAt` | `Date \| null` | When the job last completed. |
+| `lastDuration` | `number \| null` | Last run duration in ms. |
+| `lastError` | `Error \| null` | Last error thrown by handler. |
+| `runCount` | `number` | Total completed executions. |
+| `nextRuns` | `(count?: number) => Date[]` | Preview upcoming run times. |
+
+### `nextRuns(expression: string, count?: number, timezone?: string): Date[]`
+
+Returns an array of upcoming dates matching the cron expression.
+
+### `parseCronExpression(expression: string): ParsedCron`
+
+Parses a 5-field cron expression into a structured object.
+
+### `matchesCron(cron: ParsedCron, date: Date): boolean`
+
+Tests whether a date matches a parsed cron expression.
+
+## Limitations
+
+- **Minute-level precision**: The scheduler ticks every 30 seconds to check for matching jobs. All scheduling has minute-level granularity — second-level precision is not supported.
+- **Timezone handling**: Timezone conversion uses `Date.toLocaleString()` internally, which may have subtle differences across runtimes.
+- **In-memory only**: Job state is not persisted. Restarting the process resets all job counters and history.
+
 ## License
 
 MIT

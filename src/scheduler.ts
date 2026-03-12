@@ -113,6 +113,8 @@ export function createScheduler(): Scheduler {
   function start(): void {
     if (timer) return;
     tick();
+    // Tick every 30 seconds. Jobs have minute-level precision — this interval
+    // ensures each minute is checked at least once while keeping CPU usage low.
     timer = setInterval(tick, 30000);
   }
 
