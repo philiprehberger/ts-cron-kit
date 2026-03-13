@@ -10,7 +10,7 @@ interface InternalJob {
   lastDuration: number | null;
   lastError: Error | null;
   runCount: number;
-  lastMatchedMinute: number;
+  lastMatchedMinute: string;
 }
 
 export function createScheduler(): Scheduler {
@@ -32,8 +32,21 @@ export function createScheduler(): Scheduler {
       lastDuration: null,
       lastError: null,
       runCount: 0,
-      lastMatchedMinute: -1,
+      lastMatchedMinute: '',
     });
+  }
+
+  function updateJob(name: string, updates: Partial<Omit<JobConfig, 'name'>>): void {
+    const job = jobs.get(name);
+    if (!job) {
+      throw new Error(`Job "${name}" not found`);
+    }
+    const newConfig = { ...job.config, ...updates };
+    const scheduleChanged = updates.schedule !== undefined && updates.schedule !== job.config.schedule;
+    job.config = newConfig;
+    if (scheduleChanged) {
+      job.cron = parseCronExpression(newConfig.schedule);
+    }
   }
 
   function removeJob(name: string): void {
@@ -98,8 +111,7 @@ export function createScheduler(): Scheduler {
   function tick(): void {
     for (const job of jobs.values()) {
       const now = getDateInTimezone(job.config.timezone);
-      const currentMinute = now.getFullYear() * 10000000 + (now.getMonth() + 1) * 100000 +
-        now.getDate() * 1000 + now.getHours() * 60 + now.getMinutes();
+      const currentMinute = `${now.getFullYear()}-${now.getMonth() + 1}-${now.getDate()}-${now.getHours()}-${now.getMinutes()}`;
 
       if (currentMinute === job.lastMatchedMinute) continue;
 
@@ -149,5 +161,5 @@ export function createScheduler(): Scheduler {
     return shutdownPromise;
   }
 
-  return { addJob, removeJob, getJob, getJobs, start, stop, shutdown };
+  return { addJob, updateJob, removeJob, getJob, getJobs, start, stop, shutdown };
 }

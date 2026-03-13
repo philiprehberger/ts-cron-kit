@@ -37,6 +37,7 @@ export interface JobInfo {
 
 export interface Scheduler {
   addJob(config: JobConfig): void;
+  updateJob(name: string, updates: Partial<Omit<JobConfig, 'name'>>): void;
   removeJob(name: string): void;
   getJob(name: string): JobInfo;
   getJobs(): JobInfo[];

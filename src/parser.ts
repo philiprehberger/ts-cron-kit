@@ -82,13 +82,26 @@ export function parseCronExpression(expression: string): ParsedCron {
 }
 
 export function matchesCron(cron: ParsedCron, date: Date): boolean {
-  return (
-    cron.minute.values.includes(date.getMinutes()) &&
-    cron.hour.values.includes(date.getHours()) &&
-    cron.dayOfMonth.values.includes(date.getDate()) &&
-    cron.month.values.includes(date.getMonth() + 1) &&
-    cron.dayOfWeek.values.includes(date.getDay())
-  );
+  const minuteMatch = cron.minute.values.includes(date.getMinutes());
+  const hourMatch = cron.hour.values.includes(date.getHours());
+  const monthMatch = cron.month.values.includes(date.getMonth() + 1);
+  const domMatch = cron.dayOfMonth.values.includes(date.getDate());
+  const dowMatch = cron.dayOfWeek.values.includes(date.getDay());
+
+  // Standard cron behavior: when both day-of-month and day-of-week are
+  // restricted (not wildcards), the job runs when *either* field matches (OR).
+  // When only one is restricted, it acts as a normal AND condition.
+  const domIsWild = cron.dayOfMonth.type === 'wildcard';
+  const dowIsWild = cron.dayOfWeek.type === 'wildcard';
+
+  let dayMatch: boolean;
+  if (!domIsWild && !dowIsWild) {
+    dayMatch = domMatch || dowMatch;
+  } else {
+    dayMatch = domMatch && dowMatch;
+  }
+
+  return minuteMatch && hourMatch && monthMatch && dayMatch;
 }
 
 export function getDateInTimezone(timezone?: string): Date {

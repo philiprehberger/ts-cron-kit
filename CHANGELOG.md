@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.3.0
+
+- Fix day-of-month / day-of-week OR logic: when both fields are restricted, the job now runs when either matches (standard cron behavior)
+- Improve tick deduplication key to use a readable string format instead of a numeric composite
+- Add `updateJob()` method to modify a job's schedule, handler, or other options in-place
+
 ## 0.2.3
 
 - Fix npm package name references in README

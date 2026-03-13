@@ -59,6 +59,8 @@ Standard 5-field format: `minute hour day-of-month month day-of-week`
 
 Supports: `*`, values (`5`), ranges (`1-5`), steps (`*/5`), lists (`1,3,5`).
 
+When both day-of-month and day-of-week are specified (not `*`), the job runs when **either** field matches (OR logic), following standard cron behavior.
+
 ### Preview Next Runs
 
 ```ts
@@ -77,6 +79,12 @@ scheduler.getJob('cleanup').nextRuns(5);
 scheduler.getJob('cleanup');   // job info
 scheduler.getJobs();           // all jobs
 scheduler.removeJob('cleanup');
+
+// Update a job's schedule, handler, or other options
+scheduler.updateJob('cleanup', {
+  schedule: '0 4 * * *',      // change to 4am
+  handler: async () => { /* new logic */ },
+});
 ```
 
 ### Job Info
@@ -107,6 +115,7 @@ Creates a new scheduler instance.
 | Method | Signature | Description |
 |--------|-----------|-------------|
 | `addJob` | `(config: JobConfig) => void` | Register a job. Throws if name already exists. |
+| `updateJob` | `(name: string, updates: Partial<Omit<JobConfig, 'name'>>) => void` | Update a job's config. Re-parses schedule if changed. Throws if not found. |
 | `removeJob` | `(name: string) => void` | Remove a job by name. Throws if not found. |
 | `getJob` | `(name: string) => JobInfo` | Get info for a single job. Throws if not found. |
 | `getJobs` | `() => JobInfo[]` | Get info for all registered jobs. |
