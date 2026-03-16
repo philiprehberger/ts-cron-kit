@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.3.3
+
+- Add Development section to README
+- Fix CI badge to reference publish.yml
+
 ## 0.3.0
 
 - Fix day-of-month / day-of-week OR logic: when both fields are restricted, the job now runs when either matches (standard cron behavior)

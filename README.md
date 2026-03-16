@@ -1,6 +1,6 @@
 # @philiprehberger/cron-kit
 
-[![CI](https://github.com/philiprehberger/cron-kit/actions/workflows/ci.yml/badge.svg)](https://github.com/philiprehberger/cron-kit/actions/workflows/ci.yml)
+[![CI](https://github.com/philiprehberger/cron-kit/actions/workflows/publish.yml/badge.svg)](https://github.com/philiprehberger/cron-kit/actions/workflows/publish.yml)
 [![npm version](https://img.shields.io/npm/v/@philiprehberger/cron-kit.svg)](https://www.npmjs.com/package/@philiprehberger/cron-kit)
 [![License](https://img.shields.io/github/license/philiprehberger/cron-kit)](LICENSE)
 
@@ -172,6 +172,15 @@ Tests whether a date matches a parsed cron expression.
 - **Minute-level precision**: The scheduler ticks every 30 seconds to check for matching jobs. All scheduling has minute-level granularity — second-level precision is not supported.
 - **Timezone handling**: Timezone conversion uses `Date.toLocaleString()` internally, which may have subtle differences across runtimes.
 - **In-memory only**: Job state is not persisted. Restarting the process resets all job counters and history.
+
+
+## Development
+
+```bash
+npm install
+npm run build
+npm test
+```
 
 ## License
 
