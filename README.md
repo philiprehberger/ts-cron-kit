@@ -4,7 +4,7 @@
 [![npm version](https://img.shields.io/npm/v/@philiprehberger/cron-kit.svg)](https://www.npmjs.com/package/@philiprehberger/cron-kit)
 [![License](https://img.shields.io/github/license/philiprehberger/cron-kit)](LICENSE)
 
-Cron job scheduler with overlap prevention, timezones, and job management.
+Cron job scheduler with overlap prevention, timezones, and job management
 
 ## Installation
 
