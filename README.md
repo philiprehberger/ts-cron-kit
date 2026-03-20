@@ -1,6 +1,6 @@
 # @philiprehberger/cron-kit
 
-[![CI](https://github.com/philiprehberger/cron-kit/actions/workflows/publish.yml/badge.svg)](https://github.com/philiprehberger/cron-kit/actions/workflows/publish.yml)
+[![CI](https://github.com/philiprehberger/cron-kit/actions/workflows/ci.yml/badge.svg)](https://github.com/philiprehberger/cron-kit/actions/workflows/ci.yml)
 [![npm version](https://img.shields.io/npm/v/@philiprehberger/cron-kit.svg)](https://www.npmjs.com/package/@philiprehberger/cron-kit)
 [![License](https://img.shields.io/github/license/philiprehberger/cron-kit)](LICENSE)
 
@@ -61,7 +61,7 @@ Standard 5-field format: `minute hour day-of-month month day-of-week`
 └────────────────────────── Minute (0–59)
 ```
 
-Supports: `*`, values (`5`), ranges (`1-5`), steps (`*/5`), lists (`1,3,5`).
+Supports: `*`, values (`5`), ranges (`1-5`), steps (`*/5`), lists (`1,3,5`)
 
 When both day-of-month and day-of-week are specified (not `*`), the job runs when **either** field matches (OR logic), following standard cron behavior.
 
@@ -110,7 +110,7 @@ scheduler.stop();               // stop scheduling (active jobs keep running)
 await scheduler.shutdown();     // stop + wait for active jobs to finish
 ```
 
-## API Reference
+## API
 
 ### `createScheduler(): Scheduler`
 
