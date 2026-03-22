@@ -1,8 +1,8 @@
 # @philiprehberger/cron-kit
 
-[![CI](https://github.com/philiprehberger/cron-kit/actions/workflows/ci.yml/badge.svg)](https://github.com/philiprehberger/cron-kit/actions/workflows/ci.yml)
+[![CI](https://github.com/philiprehberger/ts-cron-kit/actions/workflows/ci.yml/badge.svg)](https://github.com/philiprehberger/ts-cron-kit/actions/workflows/ci.yml)
 [![npm version](https://img.shields.io/npm/v/@philiprehberger/cron-kit.svg)](https://www.npmjs.com/package/@philiprehberger/cron-kit)
-[![License](https://img.shields.io/github/license/philiprehberger/cron-kit)](LICENSE)
+[![License](https://img.shields.io/github/license/philiprehberger/ts-cron-kit)](LICENSE)
 
 Cron job scheduler with overlap prevention, timezones, and job management
 
