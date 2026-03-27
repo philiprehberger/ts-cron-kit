@@ -3,6 +3,7 @@
 [![CI](https://github.com/philiprehberger/ts-cron-kit/actions/workflows/ci.yml/badge.svg)](https://github.com/philiprehberger/ts-cron-kit/actions/workflows/ci.yml)
 [![npm version](https://img.shields.io/npm/v/@philiprehberger/cron-kit.svg)](https://www.npmjs.com/package/@philiprehberger/cron-kit)
 [![License](https://img.shields.io/github/license/philiprehberger/ts-cron-kit)](LICENSE)
+[![Sponsor](https://img.shields.io/badge/sponsor-GitHub%20Sponsors-ec6cb9)](https://github.com/sponsors/philiprehberger)
 
 Cron job scheduler with overlap prevention, timezones, and job management
 
