@@ -1,9 +1,8 @@
 # @philiprehberger/cron-kit
 
-[![CI](https://github.com/philiprehberger/ts-cron-kit/actions/workflows/ci.yml/badge.svg)](https://github.com/philiprehberger/ts-cron-kit/actions/workflows/ci.yml)
+[![CI](https://github.com/philiprehberger/cron-kit/actions/workflows/ci.yml/badge.svg)](https://github.com/philiprehberger/cron-kit/actions/workflows/ci.yml)
 [![npm version](https://img.shields.io/npm/v/@philiprehberger/cron-kit.svg)](https://www.npmjs.com/package/@philiprehberger/cron-kit)
-[![License](https://img.shields.io/github/license/philiprehberger/ts-cron-kit)](LICENSE)
-[![Sponsor](https://img.shields.io/badge/sponsor-GitHub%20Sponsors-ec6cb9)](https://github.com/sponsors/philiprehberger)
+[![Last updated](https://img.shields.io/github/last-commit/philiprehberger/cron-kit)](https://github.com/philiprehberger/cron-kit/commits/main)
 
 Cron job scheduler with overlap prevention, timezones, and job management
 
@@ -174,7 +173,6 @@ Tests whether a date matches a parsed cron expression.
 - **Timezone handling**: Timezone conversion uses `Date.toLocaleString()` internally, which may have subtle differences across runtimes.
 - **In-memory only**: Job state is not persisted. Restarting the process resets all job counters and history.
 
-
 ## Development
 
 ```bash
@@ -183,6 +181,24 @@ npm run build
 npm test
 ```
 
+## Support
+
+If you find this project useful:
+
+⭐ [Star the repo](https://github.com/philiprehberger/cron-kit)
+
+🐛 [Report issues](https://github.com/philiprehberger/cron-kit/issues?q=is%3Aissue+is%3Aopen+label%3Abug)
+
+💡 [Suggest features](https://github.com/philiprehberger/cron-kit/issues?q=is%3Aissue+is%3Aopen+label%3Aenhancement)
+
+❤️ [Sponsor development](https://github.com/sponsors/philiprehberger)
+
+🌐 [All Open Source Projects](https://philiprehberger.com/open-source-packages)
+
+💻 [GitHub Profile](https://github.com/philiprehberger)
+
+🔗 [LinkedIn Profile](https://www.linkedin.com/in/philiprehberger)
+
 ## License
 
-MIT
+[MIT](LICENSE)
